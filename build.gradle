@@ -1,0 +1,47 @@
+plugins {
+    id 'fabric-loom' version '1.14-SNAPSHOT'
+}
+
+def minecraftVersion = '1.21.11'
+def yarnMappings     = '1.21.11+build.4'
+def loaderVersion    = '0.18.1'
+def fabricApiVersion = '0.141.1+1.21.11'
+
+version = '0.1.0'
+group = 'com.wissper'
+
+base {
+    archivesName = 'moxy'
+}
+
+loom {
+    splitEnvironmentSourceSets()
+    mods {
+        "moxy" {
+            sourceSet sourceSets.client
+        }
+    }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${minecraftVersion}"
+    mappings "net.fabricmc:yarn:${yarnMappings}:v2"
+    modImplementation "net.fabricmc:fabric-loader:${loaderVersion}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabricApiVersion}"
+}
+
+processResources {
+    inputs.property "version", project.version
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 21
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
