@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "moxy",
+  "version": "${version}",
+  "name": "Moxy",
+  "description": "Simple distant terrain LOD for weak mobile (Mali) GPUs. Independent project, not affiliated with Voxy.",
+  "authors": ["W1ssper"],
+  "license": "All-Rights-Reserved",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["com.wissper.moxy.MoxyClient"]
+  },
+  "depends": {
+    "fabricloader": ">=0.18.1",
+    "minecraft": "~1.21.11",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
